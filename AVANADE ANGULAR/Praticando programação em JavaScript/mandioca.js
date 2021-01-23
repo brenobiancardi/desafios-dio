@@ -1,39 +1,36 @@
 const colors = require("colors");
 
-function testar() {
-  let testes = [
-    [1, 1, 1, 1, 1],
-    [2, 2, 2, 2, 2],
-  ];
-  let resultados = [3775, 7325];
+let testes = [1, 1, 1, 1, 1, 2, 2, 2, 2, 2];
+let resultados = [3775, 7325];
 
+function gets() {
+  return testes.shift();
+}
+
+function testar() {
   let i = 1;
   while (testes.length > 0) {
+    console.warn("");
     let expect = resultados.shift();
-    let resultado = desafio(testes.shift());
+    let resultado = desafio();
     if (resultado === expect) {
-      console.error("");
       console.warn(`TESTE ${i} passou`.black.bgGreen);
-      console.warn(`Esperava = [${expect}] resultou = [${resultado}]]`);
+      console.warn(`Esperava = [${expect}] resultou = [${resultado}]`);
     } else {
-      console.error("");
       console.error(`TESTE ${i} não passou`.black.bgRed);
-      console.error(`Esperava = [${expect}] resultou = [${resultado}]]`);
+      console.error(`Esperava = [${expect}] resultou = [${resultado}]`);
     }
+    i++;
   }
 }
 
 console.log = (entrada) => {
-  return entrada;
+  return entrada; //para nao printar
 };
 
 testar();
 
 function desafio(input) {
-  function gets() {
-    return input.shift();
-  }
-
   let total = 0;
   let chico = 300 * parseInt(gets());
   let bento = 1500 * parseInt(gets());
