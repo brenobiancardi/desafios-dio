@@ -1,7 +1,13 @@
 const colors = require("colors");
 
-let testes = [];
-let resultados = [];
+let testes = [
+  [
+    2,
+    "carne laranja suco picles laranja picles",
+    "laranja pera laranja pera pera",
+  ],
+];
+let resultados = [["carne laranja picles suco", "laranja pera"]];
 
 function gets() {
   return teste.shift();
@@ -14,8 +20,7 @@ function testar() {
     let expect = resultados.shift();
     teste = testes.shift();
     let resultado = desafio();
-    //implementar teste e apagar essa linha
-    if (false) {
+    if (arraysIguais(expect, resultado)) {
       console.warn(`TESTE ${i} passou`.black.bgGreen);
       console.warn(`Esperava = [${expect}] resultou = [${resultado}]`);
     } else {
@@ -26,35 +31,37 @@ function testar() {
   }
 }
 
+let variavelTeste = [];
 console.log = (entrada) => {
-  return entrada; //para nao printar
+  variavelTeste.push(entrada); //para nao printar
 };
 
 testar();
 
 function desafio() {
-  //implementar aqui a funcao desafio
+  const quantidade = parseInt(gets());
 
-  return resultado;
-}
-//para testes de objetos
-function objetoEquivalente(a, b) {
-  var propriedadesA = Object.getOwnPropertyNames(a);
-  var propriedadesB = Object.getOwnPropertyNames(b);
+  for (let i = 0; i < quantidade; i++) {
+    let listaCompras = [];
+    let input = gets();
 
-  if (propriedadesA.length != propriedadesB.length) {
-    return false;
-  }
+    let lista = input.split(" ");
 
-  for (let i = 0; i < propriedadesA.length; i++) {
-    let propriedade = propriedadesA[i];
+    let listaOrdenada = lista.sort();
 
-    if (a[propriedade] !== b[propriedade]) {
-      return false;
+    while (listaOrdenada.length > 0) {
+      const objeto = listaOrdenada.shift();
+      if (!listaCompras.some((value) => value == objeto)) {
+        listaCompras.push(objeto);
+      }
     }
+
+    console.log(listaCompras.join(" "));
   }
 
-  return true;
+  resultado = variavelTeste;
+  variavelTeste = [];
+  return resultado;
 }
 
 //teste de arrays
