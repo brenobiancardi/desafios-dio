@@ -10,9 +10,17 @@ A entrada contém um número inteiro N. Este N será a quantidade de pares de va
 
 Para cada caso mostre o resultado da divisão com um dígito após o ponto decimal, ou “divisao impossivel” caso não seja possível efetuar o cálculo.
 
-| Exemplo de Entrada | Exemplo de Saída   |
-| ------------------ | ------------------ |
-| 3                  | -1.5               |
-| 3 -2               | divisao impossivel |
-| -8 0               | 0.0                |
-| 0 8                |                    |
+```
+|-------------------------------------------- |
+| Entrada              | Saída                |
+|----------------------|----------------------|
+| 6 10                 | 44                   |
+| 0 10 10 10 10 10     |                      |
+| 1 4 7                |                      |
+| 5 1 2                |                      |
+| 3 5 3                |                      |
+| 2 5 2                |                      |
+| 6 5 2                |                      |
+|---------------------------------------------|
+
+```

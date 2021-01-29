@@ -10,9 +10,14 @@ A primeira linha de entrada contem um único inteiro N (1 ≤ N ≤ 1000), indic
 
 Para cada caso de teste, imprima uma linha contendo o número de dias que Blobs irá demorar para comer todo seu suprimento de comida, seguido da palavra "dias".
 
-| Exemplo de Entrada | Exemplo de Saída |
-| ------------------ | ---------------- |
-| 3                  | 6 dias           |
-| 40.0               | 8 dias           |
-| 200.0              | 9 dias           |
-| 300.0              |                  |
+```
+|-------------------------------------------- |
+| Entrada              | Saída                |
+|----------------------|----------------------|
+| 3                    | 6 dias               |
+| 40.0                 | 8 dias               |
+| 200.0                | 9 dias               |
+| 300.0                |                      |
+|---------------------------------------------|
+
+```
