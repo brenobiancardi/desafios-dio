@@ -1,9 +1,8 @@
 using System;
 
-class minhaClasse
-{
-	static void Main(string[] args)
-	{
+class Media 
+{ 
+public static void Teste() {  
 		double A;
 		double B;
 		double media;
