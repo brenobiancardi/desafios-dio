@@ -7,29 +7,34 @@ namespace Desafios.Problemas
     public static void Teste()
     {
 
-      double salario, percentual = 0;
+      double salario, percentual;
 
-      salario = double.Parse(Console.ReadLine());
+      salario = double.Parse(Console.ReadLine().Replace(",", "."));
 
-      if (salario > 2000.00)
+      if (salario >= 2000.01)
       {
         percentual = 0.04;
       }
-      else if (salario > 1200.00)
+      else if (salario >= 1200.01)
       {
         percentual = 0.07;
       }
-      else if (salario > 800.00)
+      else if (salario >= 800.01)
       {
         percentual = 0.10;
       }
-      else if (salario > 400.00)
+      else if (salario >= 400.01)
       {
         percentual = 0.12;
       }
-      else if (salario > 0.00)
+      else if (salario >= 0.00)
       {
         percentual = 0.15;
+      }
+      else
+      {
+        salario = 0;
+        percentual = 0;
       }
 
       CalculaReajuste(percentual, salario);
