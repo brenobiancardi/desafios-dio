@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Desafios.Praticando
 {
@@ -8,25 +7,44 @@ namespace Desafios.Praticando
   {
     public static void Teste()
     {
-
       string[] configs = Console.ReadLine().Split(" ");
 
-      int qtdTestes = Convert.ToInt32(configs[0]);
+      int qtdPromocoes = Convert.ToInt32(configs[0]);
       int qtdLatas = Convert.ToInt32(configs[1]);
-      Dictionary<int, int> dadosTeste = new();
+      Dictionary<int, int> promocoes = new Dictionary<int, int>();
+      int maiorArrecadacao = 0;
 
-
-      while (qtdTestes > 0)
+      while (qtdPromocoes > 0)
       {
         string[] inputs = Console.ReadLine().Split(" ");
-        dadosTeste.Add(Convert.ToInt32(inputs[0]), Convert.ToInt32(inputs[1]));
-        qtdTestes--;
+        promocoes.Add(Convert.ToInt32(inputs[0]), Convert.ToInt32(inputs[1]));
+        qtdPromocoes--;
       }
 
-      foreach (var item in dadosTeste.OrderByDescending(r => r.Value))
+      foreach (var key in promocoes.Keys)
       {
-        Console.WriteLine("Chave: {0} Valor:{1}", item.Key, item.Value);
+        int arrecadacao = 0;
+        int latasSobrando = qtdLatas;
+        foreach (var itemTeste in promocoes)
+        {
+
+          double divisor = latasSobrando / itemTeste.Value;
+          int multiplicador = (int)Math.Floor(divisor);
+          if (multiplicador > 0)
+          {
+            latasSobrando -= multiplicador * itemTeste.Key;
+            arrecadacao += multiplicador * itemTeste.Value;
+          }
+        }
+        if (arrecadacao > maiorArrecadacao)
+        {
+          maiorArrecadacao = arrecadacao;
+        }
+
+        promocoes.Remove(key);
       }
+
+      Console.WriteLine(maiorArrecadacao);
 
     }
   }
