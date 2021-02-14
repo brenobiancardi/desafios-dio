@@ -13,7 +13,9 @@
       // Problemas.ConsumoAutomovel.Teste();
       // Problemas.DDD.Teste();
       // Praticando.CoordenadaPonto.Teste();
-      Praticando.Promocoes.Teste();
+      // Praticando.Promocoes.Teste(); 
+      // Praticando.AngariandoFundos.Teste();
+      MRV.Problemas.VisitaNaFeira.Teste();
     }
   }
 }
