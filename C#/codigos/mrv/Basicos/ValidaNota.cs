@@ -1,8 +1,8 @@
 using System;
 
-namespace Desafios.MRV.Problemas
+namespace Desafios.MRV.Basicos
 {
-  class Tuitandoa
+  class ValidaNota
   {
     public static void Teste()
     {

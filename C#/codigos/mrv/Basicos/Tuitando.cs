@@ -1,6 +1,6 @@
 using System;
 
-namespace Desafios.MRV.Problemas
+namespace Desafios.MRV.Basicos
 {
   class Tuitando
   {
