@@ -1,51 +1,101 @@
 using System;
 using System.Collections.Generic;
-
 namespace Desafios.Praticando
 {
   class Promocoes
   {
+
     public static void Teste()
     {
-      string[] configs = Console.ReadLine().Split(" ");
 
-      int qtdPromocoes = Convert.ToInt32(configs[0]);
-      int qtdLatas = Convert.ToInt32(configs[1]);
-      Dictionary<int, int> promocoes = new Dictionary<int, int>();
-      int maiorArrecadacao = 0;
+      int[] configs = ReadInputs();
 
-      while (qtdPromocoes > 0)
+      while (configs[0] > 0)
       {
-        string[] inputs = Console.ReadLine().Split(" ");
-        promocoes.Add(Convert.ToInt32(inputs[0]), Convert.ToInt32(inputs[1]));
-        qtdPromocoes--;
-      }
+        int[] promocoes = new int[configs[0]];
+        int[] latas = new int[configs[0]];
 
-      foreach (var key in promocoes.Keys)
-      {
-        int arrecadacao = 0;
-        int latasSobrando = qtdLatas;
-        foreach (var itemTeste in promocoes)
+        for (int i = 0; i < configs[0]; i++)
         {
+          int[] input = ReadInputs();
 
-          double divisor = latasSobrando / itemTeste.Value;
-          int multiplicador = (int)Math.Floor(divisor);
-          if (multiplicador > 0)
-          {
-            latasSobrando -= multiplicador * itemTeste.Key;
-            arrecadacao += multiplicador * itemTeste.Value;
-          }
-        }
-        if (arrecadacao > maiorArrecadacao)
-        {
-          maiorArrecadacao = arrecadacao;
+          promocoes[i] = input[1];
+          latas[i] = input[0];
         }
 
-        promocoes.Remove(key);
+        Console.WriteLine(MaximoLucro(configs[1], latas, promocoes, configs[0]));
+
+        configs = ReadInputs();
       }
+    }
 
-      Console.WriteLine(maiorArrecadacao);
+    private static int MaximoLucro(int valor, int[] qtdLatas, int[] precoVenda, int qtdPromocoes)
+    {
+      if (qtdPromocoes == 0 || valor == 0) return 0;
 
+      if (qtdLatas[qtdPromocoes - 1] > valor)
+      {
+        return MaximoLucro(valor, qtdLatas, precoVenda, qtdPromocoes - 1);
+      }
+      else
+      {
+        return Max(precoVenda[qtdPromocoes - 1] +
+                  MaximoLucro(valor - qtdLatas[qtdPromocoes - 1], qtdLatas, precoVenda, qtdPromocoes - 1),
+                  MaximoLucro(valor, qtdLatas, precoVenda, qtdPromocoes - 1));
+      }
+    }
+    private static int Max(int atual, int novo)
+    {
+      return novo > atual ? novo : atual;
+    }
+
+    private static int[] ReadInputs()
+    {
+      string[] inputs;
+      int[] formatedInputs;
+      try
+      {
+        inputs = Console.ReadLine().Split(" ");
+        formatedInputs = new int[] { Convert.ToInt32(inputs[0]), Convert.ToInt32(inputs[1]) };
+      }
+      catch
+      {
+        formatedInputs = new int[2] { 0, 0 };
+      }
+      return formatedInputs;
+    }
+
+  }
+}
+
+/*
+faz o calculo de todas e armazena
+int[] promocoes = new int[2001];
+        int[] latas = new int[configs[1] + 1];
+        bool[] calculado = new bool[2001];
+
+        calculado[0] = true;
+
+        for (int i = 0; i < configs[0]; i++)
+        {
+          int[] input = ReadInputs();
+
+          promocoes[input[0]] = input[1];
+          calculado[input[0]] = true;
+        }
+for (int i = 0; i <= configs[1]; i++)
+{
+  for (int j = i; j >= 1; --j)
+  {
+    if (calculado[i - j] && promocoes[j] != 0)
+    {
+      int soma = latas[i - j] + promocoes[j];
+      if (soma > latas[i])
+      {
+        latas[i] = soma;
+      }
+      calculado[i] = true;
     }
   }
 }
+*/
